@@ -70,3 +70,32 @@ html {
 .nameColor{
     color: #FF6B35;
 }
+/* Section Content */
+.max-width-custom {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Section A propos */
+.section-about {
+    background-color: #ffffff;
+    color: #2c3e50;
+}
+
+.section-about .section-title {
+    border-bottom-color: #0083AE;
+    color: #1a252f;
+}
+
+.max-width-custom {
+    max-width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.8;
+}
+
+.max-width-custom strong {
+    color: #0083AE;
+    font-weight: 700;
+}
