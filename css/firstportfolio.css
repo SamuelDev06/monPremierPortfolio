@@ -8,6 +8,7 @@ html {
     width: 100%;
     height: 100%;
 }
+/* Header and Navigation */
 
 .navbar .nav-link:hover {
     color: white !important;
@@ -48,6 +49,7 @@ html {
     text-transform: uppercase;
 }
 
+/* Main portfolio section */
 .portMain {
     background-color: #1a252f;
     color: #ffffff;
