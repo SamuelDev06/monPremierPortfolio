@@ -163,3 +163,9 @@ html {
     border-color: #0083AE;
     box-shadow: 0 0 0 0.25px rgba(0, 131, 174, 0.25);
 }
+/* Footer */
+.port-footer {
+    background-color: #111a22;
+    color: #7f919b;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
