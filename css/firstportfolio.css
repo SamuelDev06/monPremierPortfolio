@@ -99,3 +99,44 @@ html {
     color: #0083AE;
     font-weight: 700;
 }
+/* Section Compétences */
+.section-skills {
+    background-color: #f8f9fa;
+    color: #2c3e50;
+}
+
+.section-skills .section-title {
+    border-bottom-color: #FF6B35;
+    color: #1a252f;
+}
+
+.section-skills .icon-box i {
+    color: #0083AE;
+    background-color: rgba(0, 131, 174, 0.1);
+    padding: 16px;
+    border-radius: 50%;
+}
+
+.bg-soft-blue {
+    background-color: rgba(0, 131, 174, 0.08);
+    color: #0083AE;
+    border: 1px solid rgba(0, 131, 174, 0.15);
+    font-weight: 600;
+    font-size: 14px;
+    padding: 6px 12px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.bg-soft-blue i {
+    font-size: 16px;
+}
+
+.skill-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skill-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
