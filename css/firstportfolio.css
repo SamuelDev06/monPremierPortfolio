@@ -140,3 +140,26 @@ html {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
 }
+
+/*Section Contact*/
+
+.section-contact {
+    background-color: #1a252f;
+    color: #ffffff;
+}
+
+.section-contact .section-title {
+    border-bottom-color: #0083AE;
+    color: #ffffff;
+}
+
+.max-width-form {
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.section-contact .form-control:focus {
+    border-color: #0083AE;
+    box-shadow: 0 0 0 0.25px rgba(0, 131, 174, 0.25);
+}
