@@ -1,3 +1,8 @@
+//  Initialisation d'EmailJS 
+let myKey = "h6yidSSqwznx04Ngq"; 
+emailjs.init(myKey);
+let myServiceID = "service_fmqasui";
+let myTemplateID = "template_rsc8nul";
 let myForm = document.getElementById('myForm');
 
 myForm.addEventListener('submit', function(event) {
@@ -48,16 +53,41 @@ myForm.addEventListener('submit', function(event) {
         });
         return;
     }
-
-   
+    //Envoi du message avec EmailJS
     Swal.fire({
-        title: "Succès !",
-        text: "Votre message a été envoyé avec succès.",
-        icon: "success",
-        confirmButtonText: "Super",
-        confirmButtonColor: "#0083AE" 
+        title: "Envoi en cours...",
+        text: "Veuillez patienter un instant.",
+        allowOutsideClick: false,
+        didOpen: () => {
+            Swal.showLoading();
+        }
     });
 
-    //  Réinitialiser le formulaire après l'envoi réussi
-    myForm.reset();
+    let templateParams = {
+        userName: userName,
+        userEmail: userEmail,
+        userSubject: userSubject,
+        userMessage: userMessage
+    };
+
+   emailjs.send(myServiceID, myTemplateID, templateParams)
+        .then(function(response) {
+            Swal.fire({
+                title: "Succès !",
+                text: "Votre message a été envoyé avec succès.",
+                icon: "success",
+                confirmButtonText: "Ok",
+                confirmButtonColor: "#0083AE"
+            });
+            myForm.reset(); 
+        }, function(error) {
+            Swal.fire({
+                title: "Échec de l'envoi",
+                text: "Une erreur est survenue lors de l'envoi du message. Veuillez réessayer.",
+                icon: "error",
+                confirmButtonText: "OK",
+                confirmButtonColor: "#FF6B35"
+            });
+            console.error('Erreur EmailJS:', error);
+        });
 });
