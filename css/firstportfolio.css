@@ -169,3 +169,7 @@ html {
     color: #7f919b;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
+/*background image*/
+#mainPage , #contact{
+    background-image: url('../img/Background.png');
+}
