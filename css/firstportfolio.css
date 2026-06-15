@@ -38,6 +38,9 @@ html {
     padding: 5px;
     background-color: white !important;
     border-bottom: 2px solid #7F919B;
+     position: fixed;  
+      width: 100%; 
+      z-index: 1000;
 }
 
 .navbar li {
