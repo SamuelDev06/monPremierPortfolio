@@ -11,18 +11,19 @@
 <body>
 
     <header>
-        <nav class="navbar navbar-expand-lg navbar-white bg-white">
+        <nav class="navbar navbar-expand-lg">
             <div class="container">
-                <a class="navbar-brand fw-bold text-wrap w-50">
+                <a class="navbar-brand fw-bold" href="#mainPage">
                     <i>Mon portfolio</i>
                 </a>
-                
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                
+
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto gap-3">
+                    <ul class="navbar-nav ms-auto gap-2">
                         <li class="nav-item"><a class="nav-link active" href="#mainPage">Accueil</a></li>
                         <li class="nav-item"><a class="nav-link" href="#aboutMe">A Propos</a></li>
                         <li class="nav-item"><a class="nav-link" href="#Skills">Compétences</a></li>
@@ -33,54 +34,59 @@
         </nav>
     </header>
 
+    <!-- HERO -->
     <main class="portMain py-5" id="mainPage">
         <div class="container">
-            <div class="row align-items-center">
+            <div class="row align-items-center gy-5">
                 
                 <div class="col-md-6 reveal-left">
-                    <h3 class="display-4 fw-bold mb-3">Bonjour, je suis Jean Samuel <b class="nameColor">OGOKONLÉ</b></h3>
-                    <p class="lead mb-4">Développeur Passionné par la création d'applications web modernes et performantes.</p>
-                    
+                    <h1 class="hero-title fw-bold mb-3">
+                        Bonjour, je suis Jean Samuel <span class="nameColor">OGOKONLÉ</span>
+                    </h1>
+                    <p class="lead mb-4">Développeur passionné par la création d'applications web modernes et performantes.</p>
+
                     <div class="d-flex flex-wrap gap-3">
-                        <button type="button" class="btn btn-cv btn-lg fw-bold shadow-sm">Voir mon CV</button>
-                        <a class="btn btn-cv btn-lg fw-bold shadow-sm" href="#" role="button">Voir plus</a>
+                        <button type="button" class="btn btn-cv btn-lg fw-bold">Voir mon CV</button>
+                        <a class="btn btn-cv btn-lg fw-bold" href="#aboutMe" role="button">Voir plus</a>
                     </div>
                 </div>
 
                 <div class="col-md-6 text-center reveal-right">
-                    <img src="../img/samuel_chemise (1).png" alt="Ma photo" class="profile-photo shadow-lg">
+                    <img src="../img/samuel_chemise (1).png" alt="Ma photo" class="profile-photo">
                 </div>
             </div>
         </div>
     </main>
-         
+
+    <!-- À PROPOS -->
     <section class="section-about py-5" id="aboutMe">
-        <div class="container section-title text-center border-bottom border-3 w-25 mx-auto mb-5">
-            <h2 class="display-6 fw-bold mb-2">À Propos</h2> 
-        </div>
-    
-        <div class="section-contain container text-center max-width-custom reveal-fade">
-            <p class="lead mb-4">
-                Je suis <strong>Ogokonlé Jean Samuel Prince Kouassi</strong>, un jeune développeur passionné par la création d'applications web modernes et performantes.
-            </p>
-            <p class="mb-4 fs-5">
-                Actuellement étudiant à <strong>Pigier Côte d'Ivoire (Antenne Yamoussoukro)</strong>, j'y développe de solides compétences techniques et méthodologiques pour concevoir des solutions numériques adaptées aux besoins réels des utilisateurs.
-            </p>
-            <p class="fs-5">
-                Curieux et rigoureux, j'aime relever de nouveaux défis, explorer les dernières technologies et transformer des idées en lignes de code fonctionnelles et élégantes.
-            </p>
+        <div class="container">
+            <div class="section-title text-center mx-auto mb-5">
+                <h2 class="fw-bold mb-2">À Propos</h2>
+            </div>
+            <div class="max-width-custom mx-auto text-center reveal-fade">
+                <p class="lead mb-4">
+                    Je suis <strong>Ogokonlé Jean Samuel Prince Kouassi</strong>, un jeune développeur passionné par la création d'applications web modernes et performantes.
+                </p>
+                <p class="mb-4">
+                    Actuellement étudiant à <strong>Pigier Côte d'Ivoire (Antenne Yamoussoukro)</strong>, j'y développe de solides compétences techniques et méthodologiques pour concevoir des solutions numériques adaptées aux besoins réels des utilisateurs.
+                </p>
+                <p class="mb-0">
+                    Curieux et rigoureux, j'aime relever de nouveaux défis, explorer les dernières technologies et transformer des idées en lignes de code fonctionnelles et élégantes.
+                </p>
+            </div>
         </div>
     </section>
 
+    <!-- COMPÉTENCES -->
     <section class="section-skills py-5" id="Skills">
-        <div class="container section-title text-center border-bottom border-3 w-25 mx-auto mb-5">
-            <h2 class="display-6 fw-bold mb-2">Compétences</h2> 
-        </div>
-
         <div class="container">
-            <div class="row g-4">
-                
-                <div class="col-md-4">
+            <div class="section-title text-center mx-auto mb-5">
+                <h2 class="fw-bold mb-2">Compétences</h2>
+            </div>
+            <div class="row g-4 justify-content-center">
+
+                <div class="col-10 col-sm-6 col-md-4">
                     <div class="card h-100 border-0 shadow-sm p-4 text-center skill-card">
                         <div class="icon-box mb-3 mx-auto">
                             <i class="fa-solid fa-code fa-2x"></i>
@@ -93,7 +99,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-10 col-sm-6 col-md-4">
                     <div class="card h-100 border-0 shadow-sm p-4 text-center skill-card">
                         <div class="icon-box mb-3 mx-auto">
                             <i class="fa-solid fa-laptop-code fa-2x"></i>
@@ -108,7 +114,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-10 col-sm-6 col-md-4">
                     <div class="card h-100 border-0 shadow-sm p-4 text-center skill-card">
                         <div class="icon-box mb-3 mx-auto">
                             <i class="fa-solid fa-gears fa-2x"></i>
@@ -125,36 +131,38 @@
         </div>
     </section>
 
+    <!-- CONTACT -->
     <section class="section-contact py-5" id="contact">
-        <div class="container section-title text-center border-bottom border-3 w-25 mx-auto mb-5">
-            <h2 class="display-6 fw-bold mb-2">Contact</h2> 
-        </div>
-
-        <div class="container max-width-form">
-            <p class="text-center mb-5 lead">Un projet, une opportunité ou une question ? Parlons-en !</p>
-            <form action="#" method="POST" class="p-4 rounded shadow bg-white text-dark position-relative z-3" id="myForm">
-                <div class="row g-3">
-                    <div class="col-md-6">
-                        <label class="form-label fw-bold small">Nom & Prénoms</label>
-                        <input type="text" class="form-control" placeholder="Ex: Jean Dupont" id="userName" required>
+        <div class="container">
+            <div class="section-title text-center mx-auto mb-5">
+                <h2 class="fw-bold mb-2">Contact</h2>
+            </div>
+            <div class="max-width-form mx-auto">
+                <p class="text-center mb-5 lead">Un projet, une opportunité ou une question ? Parlons-en !</p>
+                <form action="#" method="POST" class="p-4 rounded shadow bg-white text-dark" id="myForm">
+                    <div class="row g-3">
+                        <div class="col-12 col-md-6">
+                            <label class="form-label fw-bold small" for="userName">Nom & Prénoms</label>
+                            <input type="text" class="form-control" placeholder="Ex: Jean Dupont" id="userName" required>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <label class="form-label fw-bold small" for="userEmail">Adresse Email</label>
+                            <input type="email" class="form-control" placeholder="Ex: jean@email.com" id="userEmail" required>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label fw-bold small" for="userSubject">Objet</label>
+                            <input type="text" class="form-control" placeholder="Sujet de votre message" id="userSubject" required>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label fw-bold small" for="userMessage">Message</label>
+                            <textarea class="form-control" rows="5" placeholder="Votre message ici..." id="userMessage" required></textarea>
+                        </div>
+                        <div class="col-12 text-center mt-4">
+                            <button type="submit" class="btn btn-cv btn-lg fw-bold px-5">Envoyer le message</button>
+                        </div>
                     </div>
-                    <div class="col-md-6">
-                        <label class="form-label fw-bold small">Adresse Email</label>
-                        <input type="email" class="form-control" placeholder="Ex: jean@email.com" id="userEmail" required>
-                    </div>
-                    <div class="col-12">
-                        <label class="form-label fw-bold small">Objet</label>
-                        <input type="text" class="form-control" placeholder="Sujet de votre message" id="userSubject" required>
-                    </div>
-                    <div class="col-12">
-                        <label class="form-label fw-bold small">Message</label>
-                        <textarea class="form-control" rows="5" placeholder="Votre message ici..." id="userMessage" required></textarea>
-                    </div>
-                    <div class="col-12 text-center mt-4">
-                        <button type="submit" class="btn btn-cv btn-lg w-50 fw-bold shadow-sm">Envoyer le message</button>
-                    </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </section>
 
