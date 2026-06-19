@@ -121,17 +121,6 @@ main[id] {
     color: #FF6B35;
 }
 
-.profile-photo {
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
-
-.profile-photo:hover {
-    transform: scale(1.03);
-}
 
 @media (max-width: 991.98px) {
     .portMain {
@@ -143,18 +132,11 @@ main[id] {
         justify-content: center;
     }
 
-    .profile-photo {
-        width: 230px;
-        height: 230px;
-        margin-top: 10px;
-    }
+ 
 }
 
 @media (max-width: 575.98px) {
-    .profile-photo {
-        width: 180px;
-        height: 180px;
-    }
+  
 
     .hero-title {
         font-size: 1.5rem;
