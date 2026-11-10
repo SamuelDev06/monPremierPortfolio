@@ -718,7 +718,7 @@
 }
 
 .skill-card {
-  min-height: 200px;
+  min-height: 240px;
   padding: 26px;
   border: 1px solid rgb(245 243 237 / 14%);
   background: rgb(255 255 255 / 2%);
@@ -742,21 +742,45 @@
 }
 
 .skill-card h3 {
-  margin: 32px 0 12px;
+  margin: 26px 0 18px;
   font-size: 1.45rem;
   font-weight: 680;
   letter-spacing: -0.04em;
 }
 
-.skill-card p {
+.technology-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 16px;
   margin: 0;
-  color: var(--color-muted);
-  font-size: 0.88rem;
-  line-height: 1.8;
+  padding: 0;
+  list-style: none;
 }
 
-.skill-card p span {
-  color: var(--color-orange);
+.technology-list li {
+  display: inline-flex;
+  min-width: 76px;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  color: var(--color-muted);
+  font-size: 0.72rem;
+  text-align: center;
+}
+
+.technology-icon {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  border-radius: 9px;
+  background: #fff;
+}
+
+.technology-icon img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
 }
 
 .projects-section {
