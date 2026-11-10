@@ -1,7 +1,11 @@
 import { TestBed } from '@angular/core/testing';
+import { afterEach, vi } from 'vitest';
+import Swal, { type SweetAlertResult } from 'sweetalert2';
 import { App } from './app';
 
 describe('App', () => {
+  afterEach(() => vi.restoreAllMocks());
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [App],
@@ -11,14 +15,111 @@ describe('App', () => {
 
   it('should create the app', () => {
     const fixture = TestBed.createComponent(App);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+    expect(fixture.componentInstance).toBeTruthy();
   });
 
-  it('should render title', async () => {
+  it('should render the portfolio heading', async () => {
     const fixture = TestBed.createComponent(App);
+    fixture.detectChanges();
     await fixture.whenStable();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, v2');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Jean Samuel');
+  });
+
+  it('should select a journey step when its marker is clicked', () => {
+    const fixture = TestBed.createComponent(App);
+    fixture.detectChanges();
+
+    const element = fixture.nativeElement as HTMLElement;
+    const markers =
+      element.querySelectorAll<HTMLButtonElement>('.timeline-marker');
+    markers[2].click();
+    fixture.detectChanges();
+
+    expect(markers[2].getAttribute('aria-pressed')).toBe('true');
+  });
+
+  it('should refuse to send a message with a blank subject', async () => {
+    const send = vi.spyOn(globalThis, 'fetch');
+    const fixture = TestBed.createComponent(App);
+    fixture.detectChanges();
+
+    const element = fixture.nativeElement as HTMLElement;
+    const name = element.querySelector<HTMLInputElement>('#userName')!;
+    const email = element.querySelector<HTMLInputElement>('#userEmail')!;
+    const subject = element.querySelector<HTMLInputElement>('#userSubject')!;
+    const message =
+      element.querySelector<HTMLTextAreaElement>('#userMessage')!;
+    name.value = 'Jean Samuel';
+    email.value = 'jean@example.com';
+    subject.value = '   ';
+    message.value = 'Bonjour';
+    [name, email, subject, message].forEach((input) =>
+      input.dispatchEvent(new Event('input', { bubbles: true })),
+    );
+
+    element
+      .querySelector<HTMLButtonElement>('.contact-submit')!
+      .click();
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    expect(send).not.toHaveBeenCalled();
+    expect(element.querySelector('.form-feedback')?.textContent).toContain(
+      'Indique un objet',
+    );
+  });
+
+  it('should send trimmed contact details and show a success toast', async () => {
+    const send = vi
+      .spyOn(globalThis, 'fetch')
+      .mockResolvedValue(new Response(null, { status: 200 }));
+    const successToast = vi
+      .spyOn(Swal, 'fire')
+      .mockResolvedValue({
+        isConfirmed: false,
+        isDenied: false,
+        isDismissed: true,
+      } satisfies SweetAlertResult);
+    const fixture = TestBed.createComponent(App);
+    fixture.detectChanges();
+
+    const element = fixture.nativeElement as HTMLElement;
+    const name = element.querySelector<HTMLInputElement>('#userName')!;
+    const email = element.querySelector<HTMLInputElement>('#userEmail')!;
+    const subject = element.querySelector<HTMLInputElement>('#userSubject')!;
+    const message =
+      element.querySelector<HTMLTextAreaElement>('#userMessage')!;
+    name.value = ' Jean Samuel ';
+    email.value = 'jean@example.com';
+    subject.value = ' Portfolio ';
+    message.value = ' Bonjour ';
+    [name, email, subject, message].forEach((input) =>
+      input.dispatchEvent(new Event('input', { bubbles: true })),
+    );
+
+    element
+      .querySelector<HTMLButtonElement>('.contact-submit')!
+      .click();
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    expect(send).toHaveBeenCalledOnce();
+    const requestBody = JSON.parse(String(send.mock.calls[0][1]?.body));
+    expect(requestBody.template_params).toMatchObject({
+      userName: 'Jean Samuel',
+      userEmail: 'jean@example.com',
+      userSubject: 'Portfolio',
+      userMessage: 'Bonjour',
+    });
+    expect(successToast).toHaveBeenCalledWith(
+      expect.objectContaining({
+        toast: true,
+        icon: 'success',
+        title: 'Message envoyé avec succès !',
+        timer: 3500,
+      }),
+    );
+    expect(element.querySelector('.form-feedback')).toBeNull();
   });
 });

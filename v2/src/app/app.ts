@@ -8,6 +8,7 @@ import {
   type OnInit,
 } from '@angular/core';
 import { FormsModule, type NgForm } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 const EMAIL_JS_PUBLIC_KEY = 'h6yidSSqwznx04Ngq';
 const EMAIL_JS_SERVICE_ID = 'service_fmqasui';
@@ -33,7 +34,7 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
   protected readonly activeJourneyIndex = signal(0);
   protected readonly isSubmittingContact = signal(false);
   protected readonly contactFeedback = signal<{
-    kind: 'success' | 'error';
+    kind: 'error';
     message: string;
   } | null>(null);
   protected contactFormData = {
@@ -146,10 +147,31 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
     const userSubject = this.contactFormData.userSubject.trim();
     const userMessage = this.contactFormData.userMessage.trim();
 
+    if (!userSubject || !userMessage) {
+      this.contactFeedback.set({
+        kind: 'error',
+        message: 'Indique un objet et écris ton message avant de l’envoyer.',
+      });
+      return;
+    }
+
     if (!/^[\p{L}\s'-]+$/u.test(userName)) {
       this.contactFeedback.set({
         kind: 'error',
         message: 'Le nom doit contenir uniquement des lettres.',
+      });
+      return;
+    }
+
+    if (
+      userName.length > 80 ||
+      userEmail.length > 254 ||
+      userSubject.length > 120 ||
+      userMessage.length > 5000
+    ) {
+      this.contactFeedback.set({
+        kind: 'error',
+        message: 'Un ou plusieurs champs dépassent la longueur autorisée.',
       });
       return;
     }
@@ -175,15 +197,24 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
       });
 
       if (!response.ok) {
-        const errorDetails = await response.text();
-        throw new Error(`EmailJS a répondu ${response.status}: ${errorDetails}`);
+        throw new Error(`EmailJS a répondu ${response.status}.`);
       }
-
-      this.contactFeedback.set({
-        kind: 'success',
-        message: 'Votre message a été envoyé avec succès.',
-      });
       form.resetForm();
+      form.resetForm();
+      void Swal.fire({
+        toast: true,
+        position: 'top-end',
+        icon: 'success',
+        title: 'Message envoyé avec succès !',
+        showConfirmButton: false,
+        timer: 3500,
+        timerProgressBar: true,
+        background: '#202f3b',
+        color: '#f5f3ed',
+        customClass: {
+          popup: 'portfolio-toast',
+        },
+      });
     } catch (error) {
       console.error("Erreur lors de l'envoi du message de contact :", error);
       this.contactFeedback.set({

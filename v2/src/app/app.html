@@ -273,9 +273,10 @@
             id="userName"
             name="userName"
             type="text"
-            placeholder="Ex. Jean Dupont"
+            placeholder="Ex.Kiyotaka Ayanokoji"
             [(ngModel)]="contactFormData.userName"
-            pattern="[A-Za-zÀ-ÿ\s'-]+"
+            pattern="[\p{L}\s'-]+"
+            maxlength="80"
             required
           />
           @if (contactNgForm.submitted && contactNgForm.controls['userName']?.invalid) {
@@ -289,8 +290,9 @@
             id="userEmail"
             name="userEmail"
             type="email"
-            placeholder="Ex. jean@email.com"
+            placeholder="Ex. banlieue713@gmail.com"
             [(ngModel)]="contactFormData.userEmail"
+            maxlength="254"
             required
           />
           @if (contactNgForm.submitted && contactNgForm.controls['userEmail']?.invalid) {
@@ -306,6 +308,7 @@
             type="text"
             placeholder="Sujet de votre message"
             [(ngModel)]="contactFormData.userSubject"
+            maxlength="120"
             required
           />
           @if (contactNgForm.submitted && contactNgForm.controls['userSubject']?.invalid) {
@@ -321,6 +324,7 @@
             rows="5"
             placeholder="Votre message..."
             [(ngModel)]="contactFormData.userMessage"
+            maxlength="5000"
             required
           ></textarea>
           @if (contactNgForm.submitted && contactNgForm.controls['userMessage']?.invalid) {
@@ -330,7 +334,7 @@
       </div>
 
       @if (contactFeedback(); as feedback) {
-        <p class="form-feedback" [class.form-feedback-error]="feedback.kind === 'error'" [attr.role]="feedback.kind === 'error' ? 'alert' : 'status'">
+        <p class="form-feedback form-feedback-error" role="alert">
           {{ feedback.message }}
         </p>
       }
