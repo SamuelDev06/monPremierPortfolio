@@ -13,6 +13,7 @@ const EMAIL_JS_TEMPLATE_ID = 'template_rsc8nul';
   templateUrl: './app.html',
 })
 export class App {
+  protected readonly currentYear = new Date().getFullYear();
   protected readonly activeJourneyIndex = signal(0);
   protected readonly isSubmittingContact = signal(false);
   protected readonly contactFeedback = signal<{
