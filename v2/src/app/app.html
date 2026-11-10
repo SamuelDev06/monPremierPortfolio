@@ -6,6 +6,7 @@
 
   <nav class="site-nav" aria-label="Navigation principale">
     <a href="#apropos">À propos</a>
+    <a href="#parcours">Parcours</a>
     <a href="#competences">Compétences</a>
     <a href="#projets">Projets</a>
   </nav>
@@ -74,9 +75,56 @@
   </div>
 </section>
 
+<section class="content-section journey-section" id="parcours">
+  <div class="section-heading">
+    <span class="section-number">02 / MON PARCOURS</span>
+    <h2>Chaque étape<br /><span>me fait avancer.</span></h2>
+  </div>
+
+  <div class="journey-layout">
+    <div class="journey-photo-placeholder" role="img" aria-label="Emplacement réservé à ma photo">
+      <span class="photo-placeholder-frame"></span>
+      <span class="photo-placeholder-label">MA PHOTO</span>
+      <span class="photo-placeholder-note">À AJOUTER</span>
+    </div>
+
+    <div class="timeline-list">
+      <div class="timeline-track" aria-hidden="true">
+        <span [style.height.%]="journeyProgress"></span>
+      </div>
+
+      <ol class="timeline" aria-label="Étapes de mon parcours">
+        @for (step of journeySteps; track step.title; let index = $index) {
+          <li
+            class="timeline-item"
+            [class.is-active]="activeJourneyIndex() === index"
+          >
+            <button
+              class="timeline-marker"
+              [class.is-reached]="index <= activeJourneyIndex()"
+              type="button"
+              [attr.aria-label]="'Afficher l’étape : ' + step.title"
+              [attr.aria-pressed]="activeJourneyIndex() === index"
+              (click)="selectJourneyStep(index)"
+            ></button>
+            <div class="timeline-entry">
+              <span class="timeline-period">{{ step.period }}</span>
+              <h3>{{ step.title }}</h3>
+              <p>{{ step.description }}</p>
+              @if (step.place) {
+                <span class="timeline-place">{{ step.place }}</span>
+              }
+            </div>
+          </li>
+        }
+      </ol>
+    </div>
+  </div>
+</section>
+
 <section class="content-section skills-section" id="competences">
   <div class="section-heading">
-    <span class="section-number">02 / SAVOIR-FAIRE</span>
+    <span class="section-number">03 / SAVOIR-FAIRE</span>
     <h2>Mes <span>compétences.</span></h2>
   </div>
 
@@ -103,7 +151,7 @@
 
 <section class="content-section projects-section" id="projets">
   <div class="section-heading">
-    <span class="section-number">03 / RÉALISATIONS</span>
+    <span class="section-number">04 / RÉALISATIONS</span>
     <h2>Des idées qui<br /><span>prennent forme.</span></h2>
   </div>
 
