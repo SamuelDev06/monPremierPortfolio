@@ -31,7 +31,7 @@
 <main class="hero" id="accueil">
   <div class="hero-copy">
     <h1>
-      <span class="greeting-line">{{ typedGreeting() }}<span class="typing-caret" aria-hidden="true"></span></span><br />
+      <span class="greeting-line">{{ typedGreeting() }}@if (!isGreetingComplete()) {<span class="typing-caret" aria-hidden="true"></span>}</span><br />
       <span class="hero-name">Jean Samuel</span><br />
       <span class="hero-accent">🌀GOKONLÉ</span>
     </h1>
@@ -120,7 +120,7 @@
       <ol class="timeline" aria-label="Étapes de mon parcours">
         @for (step of journeySteps; track step.title; let index = $index) {
           <li
-            class="timeline-item reveal-on-scroll"
+            class="timeline-item"
             [class.is-active]="activeJourneyIndex() === index"
           >
             <button
@@ -153,7 +153,7 @@
   </div>
 
   <div class="skills-grid">
-    <article class="skill-card reveal-on-scroll">
+    <article class="skill-card">
       <span class="skill-index">01</span>
       <h3>Back-end</h3>
       <ul class="technology-list" aria-label="Technologies back-end">
@@ -165,7 +165,7 @@
       </ul>
     </article>
 
-    <article class="skill-card reveal-on-scroll">
+    <article class="skill-card">
       <span class="skill-index">02</span>
       <h3>Front-end</h3>
       <ul class="technology-list" aria-label="Technologies front-end">
@@ -178,7 +178,7 @@
       </ul>
     </article>
 
-    <article class="skill-card reveal-on-scroll">
+    <article class="skill-card">
       <span class="skill-index">03</span>
       <h3>Outils</h3>
       <ul class="technology-list" aria-label="Outils">
@@ -197,7 +197,7 @@
   </div>
 
   <div class="projects-grid">
-    <article class="project-card reveal-on-scroll">
+    <article class="project-card">
       <div class="project-gallery project-gallery--three" aria-label="Captures du projet Ebarre-ci Agro">
         <figure class="project-shot project-shot-featured">
           <img src="/img/ebarreci-agro-hero.png" alt="Page d’accueil de la plateforme Ebarre-ci Agro" loading="lazy" />
@@ -220,7 +220,7 @@
       </div>
     </article>
 
-    <article class="project-card reveal-on-scroll">
+    <article class="project-card">
       <div class="project-gallery project-gallery--two" aria-label="Captures du site d’invitation de mariage">
         <figure class="project-shot">
           <img src="/img/weeding-hero.png" alt="Page d’accueil du site d’invitation de mariage" loading="lazy" />
@@ -239,7 +239,7 @@
       </div>
     </article>
 
-    <article class="project-card reveal-on-scroll">
+    <article class="project-card">
       <div class="project-gallery project-gallery--two" aria-label="Captures de la plateforme AfrikTextile">
         <figure class="project-shot">
           <img src="/img/Afrik%20Textile%20%E2%80%94%20Catalogue%20africain%20%C3%A9l%C3%A9gant.png" alt="Page d’accueil et catalogue de la plateforme AfrikTextile" loading="lazy" />

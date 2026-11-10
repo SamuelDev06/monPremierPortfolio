@@ -31,6 +31,7 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
   protected readonly currentYear = new Date().getFullYear();
   protected readonly isIntroVisible = signal(true);
   protected readonly typedGreeting = signal('');
+  protected readonly isGreetingComplete = signal(false);
   protected readonly activeJourneyIndex = signal(0);
   protected readonly isSubmittingContact = signal(false);
   protected readonly contactFeedback = signal<{
@@ -122,6 +123,7 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
   private startGreetingTyping(reducedMotion: boolean): void {
     if (reducedMotion) {
       this.typedGreeting.set(this.greeting);
+      this.isGreetingComplete.set(true);
       return;
     }
 
@@ -132,6 +134,7 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
       if (this.greetingIndex >= this.greeting.length && this.typingTimer) {
         clearInterval(this.typingTimer);
         this.typingTimer = undefined;
+        this.isGreetingComplete.set(true);
       }
     }, 75);
   }
