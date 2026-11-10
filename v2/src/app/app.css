@@ -399,6 +399,120 @@
   color: var(--color-orange);
 }
 
+.projects-section {
+  padding-top: 96px;
+  padding-bottom: 130px;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 34px 22px;
+  margin-top: 54px;
+}
+
+.project-card {
+  min-width: 0;
+}
+
+.project-preview {
+  position: relative;
+  display: grid;
+  min-height: 260px;
+  overflow: hidden;
+  place-items: center;
+  border: 1px dashed rgb(245 243 237 / 25%);
+  background-color: #202f3b;
+  background-image:
+    linear-gradient(rgb(0 131 174 / 8%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(0 131 174 / 8%) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.project-preview::before {
+  position: absolute;
+  width: 150px;
+  aspect-ratio: 1;
+  border: 1px solid rgb(0 131 174 / 40%);
+  border-radius: 50%;
+  box-shadow: 0 0 0 24px rgb(0 131 174 / 5%);
+  content: "";
+}
+
+.project-preview-wedding::before {
+  border-color: rgb(255 107 53 / 55%);
+  box-shadow: 0 0 0 24px rgb(255 107 53 / 6%);
+}
+
+.project-preview-textile::before {
+  border-radius: 8px;
+  border-color: rgb(255 107 53 / 55%);
+  box-shadow: 0 0 0 24px rgb(255 107 53 / 6%);
+  transform: rotate(45deg);
+}
+
+.preview-label,
+.preview-index {
+  position: absolute;
+  z-index: 1;
+  font-size: 0.68rem;
+  font-weight: 750;
+  letter-spacing: 0.12em;
+}
+
+.preview-label {
+  padding: 9px 12px;
+  border: 1px solid rgb(245 243 237 / 20%);
+  background: var(--color-ink);
+  color: var(--color-muted);
+}
+
+.preview-index {
+  right: 18px;
+  bottom: 16px;
+  color: var(--color-orange);
+}
+
+.project-details {
+  padding-top: 20px;
+}
+
+.project-title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.project-title-row h3 {
+  margin: 0;
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  font-weight: 680;
+  letter-spacing: -0.035em;
+}
+
+.project-status {
+  flex: 0 0 auto;
+  padding: 6px 9px;
+  border: 1px solid rgb(0 131 174 / 50%);
+  color: #76cbe5;
+  font-size: 0.68rem;
+  font-weight: 650;
+}
+
+.project-status-planned {
+  border-color: rgb(255 107 53 / 50%);
+  color: #ff9a74;
+}
+
+.project-details p {
+  max-width: 490px;
+  margin: 12px 0 0;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
 a:focus-visible {
   outline: 3px solid var(--color-blue);
   outline-offset: 4px;
@@ -473,6 +587,16 @@ a:focus-visible {
     grid-template-columns: 1fr;
     gap: 12px;
     margin-top: 36px;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    margin-top: 36px;
+  }
+
+  .project-preview {
+    min-height: 230px;
   }
 
   .skill-card {
