@@ -1,19 +1,35 @@
-import { Component, signal } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  inject,
+  signal,
+  type AfterViewInit,
+  type OnDestroy,
+  type OnInit,
+} from '@angular/core';
 import { FormsModule, type NgForm } from '@angular/forms';
-import { RouterOutlet } from '@angular/router';
 
 const EMAIL_JS_PUBLIC_KEY = 'h6yidSSqwznx04Ngq';
 const EMAIL_JS_SERVICE_ID = 'service_fmqasui';
 const EMAIL_JS_TEMPLATE_ID = 'template_rsc8nul';
 
 @Component({
-  imports: [FormsModule, RouterOutlet],
+  imports: [FormsModule],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',
 })
-export class App {
+export class App implements OnInit, AfterViewInit, OnDestroy {
+  private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
+  private introTimer?: ReturnType<typeof setTimeout>;
+  private typingTimer?: ReturnType<typeof setInterval>;
+  private revealObserver?: IntersectionObserver;
+  private readonly greeting = 'Bonjour, je suis';
+  private greetingIndex = 0;
+
   protected readonly currentYear = new Date().getFullYear();
+  protected readonly isIntroVisible = signal(true);
+  protected readonly typedGreeting = signal('');
   protected readonly activeJourneyIndex = signal(0);
   protected readonly isSubmittingContact = signal(false);
   protected readonly contactFeedback = signal<{
@@ -53,6 +69,70 @@ export class App {
 
   protected selectJourneyStep(index: number): void {
     this.activeJourneyIndex.set(index);
+  }
+
+  ngOnInit(): void {
+    const reducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)',
+    ).matches;
+    this.introTimer = setTimeout(
+      () => {
+        this.isIntroVisible.set(false);
+        this.startGreetingTyping(reducedMotion);
+      },
+      reducedMotion ? 250 : 1500,
+    );
+  }
+
+  ngAfterViewInit(): void {
+    const revealElements =
+      this.host.nativeElement.querySelectorAll<HTMLElement>('.reveal-on-scroll');
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      revealElements.forEach((element) => element.classList.add('is-visible'));
+      return;
+    }
+
+    this.revealObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12 },
+    );
+
+    revealElements.forEach((element) => this.revealObserver?.observe(element));
+  }
+
+  ngOnDestroy(): void {
+    if (this.introTimer) {
+      clearTimeout(this.introTimer);
+    }
+    if (this.typingTimer) {
+      clearInterval(this.typingTimer);
+    }
+    this.revealObserver?.disconnect();
+  }
+
+  private startGreetingTyping(reducedMotion: boolean): void {
+    if (reducedMotion) {
+      this.typedGreeting.set(this.greeting);
+      return;
+    }
+
+    this.typingTimer = setInterval(() => {
+      this.greetingIndex += 1;
+      this.typedGreeting.set(this.greeting.slice(0, this.greetingIndex));
+
+      if (this.greetingIndex >= this.greeting.length && this.typingTimer) {
+        clearInterval(this.typingTimer);
+        this.typingTimer = undefined;
+      }
+    }, 75);
   }
 
   protected async sendContactMessage(form: NgForm): Promise<void> {

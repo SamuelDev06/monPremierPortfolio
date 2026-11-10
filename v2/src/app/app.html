@@ -1,7 +1,15 @@
+@if (isIntroVisible()) {
+  <div class="intro-loader" role="status" aria-label="Chargement du portfolio">
+    <span class="intro-loader-symbol" aria-hidden="true">🌀</span>
+    <span class="intro-loader-name">S.🌀Dev713</span>
+    <span class="intro-loader-caption">BIENVENUE DANS MON UNIVERS</span>
+    <span class="intro-loader-track" aria-hidden="true"><span></span></span>
+  </div>
+}
+
 <header class="site-header">
   <a class="brand" href="#accueil" aria-label="Portfolio de Jean Samuel">
     <span class="brand-mark">S.🌀Dev713</span>
-    <span class="brand-name">Samuel<span class="brand-dot">.</span></span>
   </a>
 
   <nav class="site-nav" aria-label="Navigation principale">
@@ -13,14 +21,17 @@
   </nav>
 
   <a class="header-contact" href="mailto:ogokonle@gmail.com">
-    Discutons <span aria-hidden="true">↗</span>
+    Discutons
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5h-6.1l-4.9 4v-4h0A2.5 2.5 0 0 1 4 13.5v-8Zm3 .2 5 4 5-4" />
+    </svg>
   </a>
 </header>
 
 <main class="hero" id="accueil">
   <div class="hero-copy">
     <h1>
-      Bonjour, je suis<br />
+      <span class="greeting-line">{{ typedGreeting() }}<span class="typing-caret" aria-hidden="true"></span></span><br />
       <span class="hero-name">Jean Samuel</span><br />
       <span class="hero-accent">🌀GOKONLÉ</span>
     </h1>
@@ -31,7 +42,10 @@
 
     <div class="hero-actions">
       <a class="button-primary" href="mailto:ogokonle@gmail.com">
-        Me contacter <span aria-hidden="true">↗</span>
+        Me contacter
+        <svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M3.5 5.5 12 12l8.5-6.5M5 4h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z" />
+        </svg>
       </a>
     </div>
 
@@ -41,24 +55,42 @@
     </p>
   </div>
 
-  <div class="hero-visual" aria-hidden="true">
-    <div class="visual-orbit"></div>
-    <div class="visual-square">01<span>.</span></div>
+  <div class="hero-visual" role="img" aria-label="Illustration décorative d’un éditeur de code">
+    <div class="editor-window">
+      <div class="editor-topbar">
+        <span class="editor-window-dots" aria-hidden="true">
+          <i></i><i></i><i></i>
+        </span>
+        <span class="editor-filename">portfolio.component.ts</span>
+        <span class="editor-language">TS</span>
+      </div>
 
-    <div class="visual-card">
-      <span class="visual-label-top">EN CE MOMENT</span>
-      <strong>J’apprends.<br />Je construis.<br />J’évolue.</strong>
-      <div class="visual-card-footer">
-        <span>DEV WEB</span>
-        <span>2026</span>
+      <div class="editor-code" aria-hidden="true">
+        <div><span class="code-line-number">01</span><span class="code-purple">const</span> <span class="code-blue">passion</span> = &#123;</div>
+        <div><span class="code-line-number">02</span>&nbsp;&nbsp;<span class="code-orange">curiosité</span>: <span class="code-green">'infinie'</span>,</div>
+        <div><span class="code-line-number">03</span>&nbsp;&nbsp;<span class="code-orange">créativité</span>: <span class="code-green">'active'</span>,</div>
+        <div><span class="code-line-number">04</span>&nbsp;&nbsp;<span class="code-orange">motivation</span>: <span class="code-green">'toujours'</span></div>
+        <div><span class="code-line-number">05</span>&#125;;</div>
+        <div class="code-spacer"><span class="code-line-number">06</span></div>
+        <div><span class="code-line-number">07</span><span class="code-purple">function</span> <span class="code-blue">construire</span>() &#123;</div>
+        <div><span class="code-line-number">08</span>&nbsp;&nbsp;<span class="code-purple">return</span> <span class="code-green">'une idée à la fois'</span>;</div>
+        <div><span class="code-line-number">09</span>&#125;<span class="editor-caret"></span></div>
+      </div>
+
+      <div class="editor-status">
+        <span><i></i> EN APPRENTISSAGE</span>
+        <span>CÔTE D’IVOIRE</span>
       </div>
     </div>
 
-    <span class="visual-caption">Créativité <span>×</span> Code</span>
+    <div class="visual-note">
+      <span class="visual-note-icon" aria-hidden="true">✳</span>
+      <span>Créativité<br /><strong>×</strong> Code</span>
+    </div>
   </div>
 </main>
 
-<section class="content-section about-section" id="apropos">
+<section class="content-section about-section reveal-on-scroll" id="apropos">
   <div class="section-heading">
     <span class="section-number">01 / À PROPOS</span>
     <h2>Curieux de nature,<br /><span>développeur par passion.</span></h2>
@@ -76,7 +108,7 @@
   </div>
 </section>
 
-<section class="content-section journey-section" id="parcours">
+<section class="content-section journey-section reveal-on-scroll" id="parcours">
   <div class="section-heading">
     <span class="section-number">02 / MON PARCOURS</span>
     <h2>Chaque étape<br /><span>me fait avancer.</span></h2>
@@ -97,7 +129,7 @@
       <ol class="timeline" aria-label="Étapes de mon parcours">
         @for (step of journeySteps; track step.title; let index = $index) {
           <li
-            class="timeline-item"
+            class="timeline-item reveal-on-scroll"
             [class.is-active]="activeJourneyIndex() === index"
           >
             <button
@@ -123,26 +155,26 @@
   </div>
 </section>
 
-<section class="content-section skills-section" id="competences">
+<section class="content-section skills-section reveal-on-scroll" id="competences">
   <div class="section-heading">
     <span class="section-number">03 / SAVOIR-FAIRE</span>
     <h2>Mes <span>compétences.</span></h2>
   </div>
 
   <div class="skills-grid">
-    <article class="skill-card">
+    <article class="skill-card reveal-on-scroll">
       <span class="skill-index">01</span>
       <h3>Back-end</h3>
       <p>PHP <span>·</span> MySQL</p>
     </article>
 
-    <article class="skill-card">
+    <article class="skill-card reveal-on-scroll">
       <span class="skill-index">02</span>
       <h3>Front-end</h3>
       <p>HTML5 <span>·</span> CSS3 <span>·</span> JavaScript <span>·</span> Bootstrap</p>
     </article>
 
-    <article class="skill-card">
+    <article class="skill-card reveal-on-scroll">
       <span class="skill-index">03</span>
       <h3>Outils</h3>
       <p>Git <span>·</span> GitHub</p>
@@ -150,14 +182,14 @@
   </div>
 </section>
 
-<section class="content-section projects-section" id="projets">
+<section class="content-section projects-section reveal-on-scroll" id="projets">
   <div class="section-heading">
     <span class="section-number">04 / RÉALISATIONS</span>
     <h2>Des idées qui<br /><span>prennent forme.</span></h2>
   </div>
 
   <div class="projects-grid">
-    <article class="project-card">
+    <article class="project-card reveal-on-scroll">
       <div
         class="project-preview project-preview-agro"
         role="img"
@@ -174,7 +206,7 @@
       </div>
     </article>
 
-    <article class="project-card">
+    <article class="project-card reveal-on-scroll">
       <div
         class="project-preview project-preview-wedding"
         role="img"
@@ -191,7 +223,7 @@
       </div>
     </article>
 
-    <article class="project-card">
+    <article class="project-card reveal-on-scroll">
       <div
         class="project-preview project-preview-textile"
         role="img"
@@ -210,7 +242,7 @@
   </div>
 </section>
 
-<section class="content-section contact-section" id="contact">
+<section class="content-section contact-section reveal-on-scroll" id="contact">
   <div class="section-heading">
     <span class="section-number">05 / CONTACT</span>
     <h2>Un projet en tête ?<br /><span>Parlons-en.</span></h2>
@@ -298,14 +330,16 @@
       <button class="button-primary contact-submit" type="submit" [disabled]="isSubmittingContact()">
         {{ isSubmittingContact() ? 'Envoi en cours…' : 'Envoyer le message' }}
         @if (!isSubmittingContact()) {
-          <span aria-hidden="true">↗</span>
+          <svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="m3 4 18 8-18 8 3-8-3-8Zm3 8h15" />
+          </svg>
         }
       </button>
     </form>
   </div>
 </section>
 
-<footer class="site-footer">
+<footer class="site-footer reveal-on-scroll">
   <a class="footer-brand" href="#accueil">S.🌀Dev713<span>.</span></a>
   <p>© {{ currentYear }} S.🌀Dev713. Tous droits réservés.</p>
   <div class="social-links" aria-label="Réseaux sociaux">
