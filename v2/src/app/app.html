@@ -9,6 +9,7 @@
     <a href="#parcours">Parcours</a>
     <a href="#competences">Compétences</a>
     <a href="#projets">Projets</a>
+    <a href="#contact">Contact</a>
   </nav>
 
   <a class="header-contact" href="mailto:ogokonle@gmail.com">
@@ -206,5 +207,100 @@
         <p>Plateforme de vente de tissus africains.</p>
       </div>
     </article>
+  </div>
+</section>
+
+<section class="content-section contact-section" id="contact">
+  <div class="section-heading">
+    <span class="section-number">05 / CONTACT</span>
+    <h2>Un projet en tête ?<br /><span>Parlons-en.</span></h2>
+  </div>
+
+  <div class="contact-layout">
+    <form
+      class="contact-form"
+      #contactNgForm="ngForm"
+      (ngSubmit)="sendContactMessage(contactNgForm)"
+    >
+      <p class="contact-intro">
+        Une question, une idée ou une opportunité ? Écris-moi.
+      </p>
+
+      <div class="contact-form-grid">
+        <div class="form-field">
+          <label for="userName">Nom &amp; prénoms</label>
+          <input
+            id="userName"
+            name="userName"
+            type="text"
+            placeholder="Ex. Jean Dupont"
+            [(ngModel)]="contactFormData.userName"
+            pattern="[A-Za-zÀ-ÿ\s'-]+"
+            required
+          />
+          @if (contactNgForm.submitted && contactNgForm.controls['userName']?.invalid) {
+            <span class="field-error">Saisis un nom valide.</span>
+          }
+        </div>
+
+        <div class="form-field">
+          <label for="userEmail">Adresse e-mail</label>
+          <input
+            id="userEmail"
+            name="userEmail"
+            type="email"
+            placeholder="Ex. jean@email.com"
+            [(ngModel)]="contactFormData.userEmail"
+            required
+          />
+          @if (contactNgForm.submitted && contactNgForm.controls['userEmail']?.invalid) {
+            <span class="field-error">Saisis une adresse e-mail valide.</span>
+          }
+        </div>
+
+        <div class="form-field form-field-full">
+          <label for="userSubject">Objet</label>
+          <input
+            id="userSubject"
+            name="userSubject"
+            type="text"
+            placeholder="Sujet de votre message"
+            [(ngModel)]="contactFormData.userSubject"
+            required
+          />
+          @if (contactNgForm.submitted && contactNgForm.controls['userSubject']?.invalid) {
+            <span class="field-error">Indique l’objet de ton message.</span>
+          }
+        </div>
+
+        <div class="form-field form-field-full">
+          <label for="userMessage">Message</label>
+          <textarea
+            id="userMessage"
+            name="userMessage"
+            rows="5"
+            placeholder="Votre message..."
+            [(ngModel)]="contactFormData.userMessage"
+            required
+          ></textarea>
+          @if (contactNgForm.submitted && contactNgForm.controls['userMessage']?.invalid) {
+            <span class="field-error">Écris ton message avant de l’envoyer.</span>
+          }
+        </div>
+      </div>
+
+      @if (contactFeedback(); as feedback) {
+        <p class="form-feedback" [class.form-feedback-error]="feedback.kind === 'error'" [attr.role]="feedback.kind === 'error' ? 'alert' : 'status'">
+          {{ feedback.message }}
+        </p>
+      }
+
+      <button class="button-primary contact-submit" type="submit" [disabled]="isSubmittingContact()">
+        {{ isSubmittingContact() ? 'Envoi en cours…' : 'Envoyer le message' }}
+        @if (!isSubmittingContact()) {
+          <span aria-hidden="true">↗</span>
+        }
+      </button>
+    </form>
   </div>
 </section>

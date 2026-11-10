@@ -725,6 +725,112 @@
   line-height: 1.7;
 }
 
+.contact-section {
+  padding-top: 96px;
+  padding-bottom: 120px;
+}
+
+.contact-layout {
+  width: min(100%, 850px);
+  margin: 48px auto 0;
+}
+
+.contact-form {
+  padding: clamp(20px, 3vw, 30px);
+  border: 1px solid rgb(245 243 237 / 14%);
+  background: #202f3b;
+}
+
+.contact-intro {
+  margin: 0 0 22px;
+  color: var(--color-muted);
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.contact-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.form-field {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-field-full {
+  grid-column: 1 / -1;
+}
+
+.form-field label {
+  color: var(--color-paper);
+  font-size: 0.82rem;
+  font-weight: 650;
+}
+
+.form-field input,
+.form-field textarea {
+  width: 100%;
+  min-height: 42px;
+  padding: 9px 12px;
+  border: 1px solid rgb(245 243 237 / 19%);
+  border-radius: 2px;
+  outline: none;
+  background: var(--color-ink);
+  color: var(--color-paper);
+  font: inherit;
+  font-size: 0.9rem;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.form-field textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  color: #788892;
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+  border-color: var(--color-blue);
+  box-shadow: 0 0 0 3px rgb(0 131 174 / 18%);
+}
+
+.field-error {
+  color: #ff9a74;
+  font-size: 0.78rem;
+}
+
+.form-feedback {
+  margin: 20px 0 0;
+  color: #76cbe5;
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.form-feedback-error {
+  color: #ff9a74;
+}
+
+.contact-submit {
+  margin-top: 24px;
+  cursor: pointer;
+}
+
+.contact-submit:disabled {
+  cursor: wait;
+  opacity: 0.7;
+  transform: none;
+}
+
 a:focus-visible {
   outline: 3px solid var(--color-blue);
   outline-offset: 4px;
@@ -857,6 +963,14 @@ a:focus-visible {
 
   .hero {
     padding-top: 60px;
+  }
+
+  .contact-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-field-full {
+    grid-column: auto;
   }
 
   .hero h1 {
