@@ -26,6 +26,26 @@ describe('App', () => {
     expect(compiled.querySelector('h1')?.textContent).toContain('Jean Samuel');
   });
 
+  it('should render the social profiles as safe external links', () => {
+    const fixture = TestBed.createComponent(App);
+    fixture.detectChanges();
+
+    const element = fixture.nativeElement as HTMLElement;
+    const socialLinks = element.querySelectorAll<HTMLAnchorElement>('.social-links a');
+
+    expect(socialLinks).toHaveLength(4);
+    expect(Array.from(socialLinks, (link) => link.href)).toEqual([
+      'https://github.com/SamuelDev06',
+      'https://www.linkedin.com/in/jean-samuel-ogokonl%C3%A9-83a5322bb?utm_source=share_via&utm_content=profile&utm_medium=member_ios',
+      'https://wa.me/qr/JPLKTXBF3EYFD1?s=r',
+      'https://www.instagram.com/samy_on_line_713?psln=MW1mM2tkNWZ6ZHl4cw%3D%3D&utm_source=qr',
+    ]);
+    socialLinks.forEach((link) => {
+      expect(link.target).toBe('_blank');
+      expect(link.rel).toBe('noopener noreferrer');
+    });
+  });
+
   it('should select a journey step when its marker is clicked', () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
@@ -90,7 +110,7 @@ describe('App', () => {
     const subject = element.querySelector<HTMLInputElement>('#userSubject')!;
     const message =
       element.querySelector<HTMLTextAreaElement>('#userMessage')!;
-    name.value = ' Jean Samuel ';
+    name.value = ' Élodie Kouassi ';
     email.value = 'jean@example.com';
     subject.value = ' Portfolio ';
     message.value = ' Bonjour ';
@@ -107,7 +127,7 @@ describe('App', () => {
     expect(send).toHaveBeenCalledOnce();
     const requestBody = JSON.parse(String(send.mock.calls[0][1]?.body));
     expect(requestBody.template_params).toMatchObject({
-      userName: 'Jean Samuel',
+      userName: 'Élodie Kouassi',
       userEmail: 'jean@example.com',
       userSubject: 'Portfolio',
       userMessage: 'Bonjour',
@@ -121,5 +141,34 @@ describe('App', () => {
       }),
     );
     expect(element.querySelector('.form-feedback')).toBeNull();
+  });
+
+  it('should explain how to allow the site origin after an EmailJS 412', async () => {
+    vi.spyOn(globalThis, 'fetch').mockResolvedValue(
+      new Response('Origin not allowed', { status: 412 }),
+    );
+    const fixture = TestBed.createComponent(App);
+    fixture.detectChanges();
+
+    const element = fixture.nativeElement as HTMLElement;
+    const name = element.querySelector<HTMLInputElement>('#userName')!;
+    const email = element.querySelector<HTMLInputElement>('#userEmail')!;
+    const subject = element.querySelector<HTMLInputElement>('#userSubject')!;
+    const message = element.querySelector<HTMLTextAreaElement>('#userMessage')!;
+    name.value = 'Jean Samuel';
+    email.value = 'jean@example.com';
+    subject.value = 'Portfolio';
+    message.value = 'Bonjour';
+    [name, email, subject, message].forEach((input) =>
+      input.dispatchEvent(new Event('input', { bubbles: true })),
+    );
+
+    element.querySelector<HTMLButtonElement>('.contact-submit')!.click();
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    expect(element.querySelector('.form-feedback')?.textContent).toContain(
+      'Account > Security > Allowed Origins',
+    );
   });
 });

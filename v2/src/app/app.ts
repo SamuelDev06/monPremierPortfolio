@@ -155,10 +155,11 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
       return;
     }
 
-    if (!/^[\p{L}\s'-]+$/u.test(userName)) {
+    if (!/^[A-Za-zÀ-ÖØ-öø-ÿĀ-ž\s'-]+$/u.test(userName)) {
       this.contactFeedback.set({
         kind: 'error',
-        message: 'Le nom doit contenir uniquement des lettres.',
+        message:
+          'Le nom doit contenir uniquement des lettres, espaces, apostrophes ou traits d’union.',
       });
       return;
     }
@@ -197,9 +198,20 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
       });
 
       if (!response.ok) {
-        throw new Error(`EmailJS a répondu ${response.status}.`);
+        const errorDetails = await response.text();
+        console.error('EmailJS a refusé la requête :', response.status, errorDetails);
+        const errorMessage =
+          response.status === 412
+            ? 'EmailJS refuse l’adresse de ce site. Dans EmailJS, ouvre Account > Security > Allowed Origins et ajoute l’origine exacte (par exemple http://localhost:4200 ou l’adresse de ton site en ligne).'
+            : response.status === 400
+            ? 'EmailJS a refusé la demande. Vérifie le service, le modèle et les noms des variables configurés.'
+            : response.status === 403
+              ? 'EmailJS a bloqué la requête. Vérifie que le domaine de ce site est autorisé dans EmailJS.'
+              : response.status === 429
+                ? 'La limite d’envoi est atteinte. Réessaie plus tard.'
+                : `Le service e-mail a répondu avec une erreur (${response.status}). Réessaie plus tard.`;
+        throw new Error(errorMessage);
       }
-      form.resetForm();
       form.resetForm();
       void Swal.fire({
         toast: true,
@@ -219,7 +231,12 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
       console.error("Erreur lors de l'envoi du message de contact :", error);
       this.contactFeedback.set({
         kind: 'error',
-        message: "L'envoi a échoué. Veuillez réessayer ou m'écrire directement par courriel.",
+        message:
+          error instanceof TypeError
+            ? 'Connexion au service e-mail impossible. Vérifie ta connexion et les domaines autorisés dans EmailJS.'
+            : error instanceof Error
+              ? error.message
+              : "L'envoi a échoué. Réessaie ou écris-moi directement par courriel.",
       });
     } finally {
       this.isSubmittingContact.set(false);
