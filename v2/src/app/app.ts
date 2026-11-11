@@ -10,9 +10,9 @@ import {
 import { FormsModule, type NgForm } from '@angular/forms';
 import Swal from 'sweetalert2';
 
-const EMAIL_JS_PUBLIC_KEY = 'h6yidSSqwznx04Ngq';
-const EMAIL_JS_SERVICE_ID = 'service_fmqasui';
-const EMAIL_JS_TEMPLATE_ID = 'template_rsc8nul';
+const EMAIL_JS_PUBLIC_KEY = 'THIA4iGpznRDahfiY';
+const EMAIL_JS_SERVICE_ID = 'service_fasx1uh';
+const EMAIL_JS_TEMPLATE_ID = 'template_rcoqv39';
 
 @Component({
   imports: [FormsModule],
