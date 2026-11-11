@@ -286,6 +286,29 @@ textarea {
   transform: scaleX(1);
 }
 
+.site-nav .header-contact {
+  position: absolute;
+  top: 50%;
+  left: calc(100% + clamp(16px, 2.4vw, 36px));
+  min-height: 42px;
+  padding-inline: 15px;
+  border-radius: 3px;
+  color: var(--color-orange);
+  font-size: 0.9rem;
+  transform: translateY(-50%);
+}
+
+.site-nav .header-contact svg {
+  flex: 0 0 auto;
+}
+
+.site-nav .header-contact:hover,
+.site-nav .header-contact:focus-visible {
+  background: var(--color-orange);
+  color: var(--color-ink);
+  transform: translateY(calc(-50% - 2px));
+}
+
 section[id] {
   scroll-margin-top: 110px;
 }
@@ -1431,6 +1454,27 @@ a:focus-visible {
 
   .site-nav a::after {
     display: none;
+  }
+
+  .site-nav .header-contact {
+    position: static;
+    min-height: 46px;
+    justify-content: center;
+    margin-top: 6px;
+    padding-inline: 14px;
+    border-radius: 9px;
+    background: rgb(255 107 53 / 10%);
+    color: var(--color-orange);
+    font-size: 0.88rem;
+    transform: none;
+  }
+
+  .site-nav .header-contact:hover,
+  .site-nav .header-contact:focus-visible {
+    padding-left: 14px;
+    background: var(--color-orange);
+    color: var(--color-ink);
+    transform: none;
   }
 
 }

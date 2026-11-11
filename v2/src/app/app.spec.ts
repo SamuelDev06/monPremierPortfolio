@@ -63,8 +63,8 @@ describe('App', () => {
     const contactLink =
       element.querySelector<HTMLAnchorElement>('.header-contact')!;
 
-    expect(contactLink.parentElement).toBe(element.querySelector('.site-header'));
-    expect(contactLink.parentElement?.lastElementChild).toBe(contactLink);
+    expect(contactLink.parentElement).toBe(navigation);
+    expect(navigation.lastElementChild).toBe(contactLink);
     expect(contactLink.href).toBe('mailto:ogokonle@gmail.com');
 
     menuButton.click();
