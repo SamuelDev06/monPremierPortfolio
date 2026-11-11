@@ -30,6 +30,7 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
 
   protected readonly currentYear = new Date().getFullYear();
   protected readonly isIntroVisible = signal(true);
+  protected readonly isMobileMenuOpen = signal(false);
   protected readonly typedGreeting = signal('');
   protected readonly isGreetingComplete = signal(false);
   protected readonly activeJourneyIndex = signal(0);
@@ -71,6 +72,10 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
 
   protected selectJourneyStep(index: number): void {
     this.activeJourneyIndex.set(index);
+  }
+
+  protected closeMobileMenu(): void {
+    this.isMobileMenuOpen.set(false);
   }
 
   ngOnInit(): void {

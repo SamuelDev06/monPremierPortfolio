@@ -41,6 +41,53 @@ describe('App', () => {
     });
   });
 
+  it('should display the portrait in the journey section', () => {
+    const fixture = TestBed.createComponent(App);
+    fixture.detectChanges();
+
+    const element = fixture.nativeElement as HTMLElement;
+    const portrait = element.querySelector<HTMLImageElement>('.journey-photo');
+
+    expect(portrait?.getAttribute('src')).toBe('/img/maphoto.png');
+    expect(portrait?.alt).toBe('Portrait de Jean Samuel');
+  });
+
+  it('should open the mobile navigation and close it after selecting a link', () => {
+    const fixture = TestBed.createComponent(App);
+    fixture.detectChanges();
+
+    const element = fixture.nativeElement as HTMLElement;
+    const menuButton = element.querySelector<HTMLButtonElement>('.nav-toggle')!;
+    const navigation = element.querySelector<HTMLElement>('.site-nav')!;
+    const contactLink =
+      navigation.querySelector<HTMLAnchorElement>('.header-contact')!;
+
+    expect(contactLink.href).toBe('mailto:ogokonle@gmail.com');
+
+    menuButton.click();
+    fixture.detectChanges();
+
+    expect(menuButton.getAttribute('aria-expanded')).toBe('true');
+    expect(navigation.classList.contains('is-open')).toBe(true);
+    expect(contactLink.textContent).toContain('Discutons');
+
+    menuButton.click();
+    fixture.detectChanges();
+
+    expect(menuButton.getAttribute('aria-expanded')).toBe('false');
+    expect(menuButton.getAttribute('aria-label')).toBe('Ouvrir le menu');
+    expect(navigation.classList.contains('is-open')).toBe(false);
+
+    menuButton.click();
+    fixture.detectChanges();
+
+    navigation.querySelector<HTMLAnchorElement>('a[href="#projets"]')!.click();
+    fixture.detectChanges();
+
+    expect(menuButton.getAttribute('aria-expanded')).toBe('false');
+    expect(navigation.classList.contains('is-open')).toBe(false);
+  });
+
   it('should render the social profiles as safe external links', () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
