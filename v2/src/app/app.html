@@ -1,7 +1,8 @@
 @if (isIntroVisible()) {
   <div class="intro-loader" role="status" aria-label="Chargement du portfolio">
-    <span class="intro-loader-symbol" aria-hidden="true">🌀</span>
-    <span class="intro-loader-name">S.🌀Dev713</span>
+    <a class="brand brand-loader" href="#accueil" aria-label="Logo Dev713">
+      <img class="brand-logo" src="/img/monlogo.png" alt="" />
+    </a>
     <span class="intro-loader-caption">BIENVENUE DANS MON UNIVERS</span>
     <span class="intro-loader-track" aria-hidden="true"><span></span></span>
   </div>
@@ -9,7 +10,7 @@
 
 <header class="site-header">
   <a class="brand" href="#accueil" aria-label="Portfolio de Jean Samuel">
-    <span class="brand-mark">S.🌀Dev713</span>
+    <img class="brand-logo" src="/img/monlogo.png" alt="" />
   </a>
 
   <nav class="site-nav" aria-label="Navigation principale">
@@ -362,8 +363,10 @@
 </section>
 
 <footer class="site-footer reveal-on-scroll">
-  <a class="footer-brand" href="#accueil">S.🌀Dev713<span>.</span></a>
-  <p>© {{ currentYear }} S.🌀Dev713. Tous droits réservés.</p>
+  <a class="brand footer-brand" href="#accueil" aria-label="Retour à l’accueil — Dev713">
+    <img class="brand-logo" src="/img/monlogo.png" alt="" />
+  </a>
+  <p>© {{ currentYear }} Dev713. Tous droits réservés.</p>
   <div class="social-links" aria-label="Réseaux sociaux">
     <a
       class="social-link"

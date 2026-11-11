@@ -26,6 +26,21 @@ describe('App', () => {
     expect(compiled.querySelector('h1')?.textContent).toContain('Jean Samuel');
   });
 
+  it('should use the personal logo in the intro, header, and footer', () => {
+    const fixture = TestBed.createComponent(App);
+    fixture.detectChanges();
+
+    const element = fixture.nativeElement as HTMLElement;
+    const logos = element.querySelectorAll<HTMLImageElement>(
+      '.brand-logo',
+    );
+
+    expect(logos).toHaveLength(3);
+    logos.forEach((logo) => {
+      expect(logo.getAttribute('src')).toBe('/img/monlogo.png');
+    });
+  });
+
   it('should render the social profiles as safe external links', () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();

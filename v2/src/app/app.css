@@ -37,23 +37,20 @@ textarea {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 18px;
+  gap: 14px;
   background: var(--color-ink);
   animation: loader-exit 450ms ease 1.1s forwards;
 }
 
-.intro-loader-symbol {
-  color: var(--color-orange);
-  font-size: clamp(4rem, 12vw, 7rem);
-  line-height: 1;
-  animation: loader-symbol 1.1s ease-in-out infinite;
+.brand-loader {
+  width: 132px;
+  height: 132px;
+  justify-content: center;
 }
 
-.intro-loader-name {
-  color: var(--color-paper);
-  font-size: 1.2rem;
-  font-weight: 750;
-  letter-spacing: 0.04em;
+.brand-loader .brand-logo {
+  width: 132px;
+  height: 132px;
 }
 
 .intro-loader-caption {
@@ -103,23 +100,22 @@ textarea {
   display: inline-flex;
   flex: 0 0 auto;
   align-items: center;
-  gap: 12px;
   color: inherit;
   text-decoration: none;
 }
 
-.brand-mark {
-  display: grid;
-  min-width: 62px;
-  min-height: 38px;
-  place-items: center;
-  padding-inline: 8px;
-  border: 1px solid rgb(0 131 174 / 65%);
-  border-radius: 3px;
-  color: var(--color-paper);
-  font-size: 0.8rem;
-  font-weight: 750;
-  letter-spacing: 0.02em;
+.brand-logo {
+  display: block;
+  width: 78px;
+  height: 72px;
+  flex: 0 0 auto;
+  object-fit: contain;
+  animation: logo-float 3.4s ease-in-out infinite;
+}
+
+.brand:hover .brand-logo {
+  filter: brightness(1.12);
+  transition: filter 180ms ease;
 }
 
 .header-contact {
@@ -1171,16 +1167,6 @@ section[id] {
   transform: none;
 }
 
-@keyframes loader-symbol {
-  0%,
-  100% {
-    transform: rotate(-12deg) scale(0.94);
-  }
-  50% {
-    transform: rotate(12deg) scale(1.06);
-  }
-}
-
 @keyframes loader-progress {
   to {
     transform: scaleX(1);
@@ -1211,6 +1197,12 @@ section[id] {
   }
 }
 
+@keyframes logo-float {
+  50% {
+    transform: translateY(-4px) scale(1.03);
+  }
+}
+
 .site-footer {
   display: flex;
   width: min(100% - 8vw, 1240px);
@@ -1224,13 +1216,12 @@ section[id] {
 
 .footer-brand {
   color: var(--color-paper);
-  font-size: 0.9rem;
-  font-weight: 750;
   text-decoration: none;
 }
 
-.footer-brand span {
-  color: var(--color-orange);
+.footer-brand .brand-logo {
+  width: 74px;
+  height: 68px;
 }
 
 .site-footer p {
@@ -1419,10 +1410,9 @@ a:focus-visible {
     gap: 8px;
   }
 
-  .brand-mark {
-    min-width: 54px;
-    min-height: 34px;
-    font-size: 0.72rem;
+  .brand-logo {
+    width: 68px;
+    height: 62px;
   }
 
   .header-contact {
