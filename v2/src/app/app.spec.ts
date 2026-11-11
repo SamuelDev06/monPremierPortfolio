@@ -48,8 +48,9 @@ describe('App', () => {
     const element = fixture.nativeElement as HTMLElement;
     const portrait = element.querySelector<HTMLImageElement>('.journey-photo');
 
-    expect(portrait?.getAttribute('src')).toBe('/img/maphoto.png');
+    expect(portrait?.getAttribute('src')).toBe('/img/maphoto2.jpg');
     expect(portrait?.alt).toBe('Portrait de Jean Samuel');
+    expect(element.querySelector('.journey-photo-caption')).toBeNull();
   });
 
   it('should open the mobile navigation and close it after selecting a link', () => {
@@ -60,8 +61,10 @@ describe('App', () => {
     const menuButton = element.querySelector<HTMLButtonElement>('.nav-toggle')!;
     const navigation = element.querySelector<HTMLElement>('.site-nav')!;
     const contactLink =
-      navigation.querySelector<HTMLAnchorElement>('.header-contact')!;
+      element.querySelector<HTMLAnchorElement>('.header-contact')!;
 
+    expect(contactLink.parentElement).toBe(element.querySelector('.site-header'));
+    expect(contactLink.parentElement?.lastElementChild).toBe(contactLink);
     expect(contactLink.href).toBe('mailto:ogokonle@gmail.com');
 
     menuButton.click();
