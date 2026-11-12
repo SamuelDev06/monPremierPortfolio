@@ -1,0 +1,444 @@
+@if (isIntroVisible()) {
+  <div class="intro-loader" role="status" aria-label="Chargement du portfolio">
+    <a class="brand brand-loader" href="#accueil" aria-label="Logo Dev713">
+      <img class="brand-logo" src="/img/monlogo.png" alt="" />
+    </a>
+    <span class="intro-loader-caption">BIENVENUE DANS MON UNIVERS</span>
+    <span class="intro-loader-track" aria-hidden="true"><span></span></span>
+  </div>
+}
+
+<header class="site-header">
+  <a class="brand" href="#accueil" aria-label="Portfolio de Jean Samuel">
+    <img class="brand-logo" src="/img/monlogo.png" alt="" />
+  </a>
+
+  <button
+    class="nav-toggle"
+    [class.is-open]="isMobileMenuOpen()"
+    type="button"
+    aria-controls="primary-navigation"
+    [attr.aria-expanded]="isMobileMenuOpen()"
+    [attr.aria-label]="isMobileMenuOpen() ? 'Fermer le menu' : 'Ouvrir le menu'"
+    (click)="isMobileMenuOpen.set(!isMobileMenuOpen())"
+  >
+    <span class="nav-toggle-lines" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+    </span>
+  </button>
+
+  <nav
+    class="site-nav"
+    id="primary-navigation"
+    [class.is-open]="isMobileMenuOpen()"
+    aria-label="Navigation principale"
+  >
+    <a href="#apropos" (click)="closeMobileMenu()">À propos</a>
+    <a href="#parcours" (click)="closeMobileMenu()">Parcours</a>
+    <a href="#competences" (click)="closeMobileMenu()">Compétences</a>
+    <a href="#projets" (click)="closeMobileMenu()">Projets</a>
+    <a href="#contact" (click)="closeMobileMenu()">Contact</a>
+    <a
+      class="header-contact"
+      href="mailto:ogokonle@gmail.com"
+      (click)="closeMobileMenu()"
+    >
+      Discutons
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5h-6.1l-4.9 4v-4h0A2.5 2.5 0 0 1 4 13.5v-8Zm3 .2 5 4 5-4" />
+      </svg>
+    </a>
+  </nav>
+</header>
+
+<main class="hero" id="accueil">
+  <div class="hero-copy">
+    <h1>
+      <span class="greeting-line">{{ typedGreeting() }}@if (!isGreetingComplete()) {<span class="typing-caret" aria-hidden="true"></span>}</span><br />
+      <span class="hero-name">Jean Samuel</span><br />
+      <span class="hero-accent">🌀GOKONLÉ</span>
+    </h1>
+
+    <p class="hero-description">
+      Développeur passionné, je crée des applications web modernes et utiles.
+    </p>
+
+    <div class="hero-actions">
+      <a class="button-primary" href="mailto:ogokonle@gmail.com">
+        Me contacter
+        <svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M3.5 5.5 12 12l8.5-6.5M5 4h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z" />
+        </svg>
+      </a>
+    </div>
+
+  </div>
+
+  <div class="hero-visual" role="img" aria-label="Illustration décorative d’un éditeur de code">
+    <div class="editor-window">
+      <div class="editor-topbar">
+        <span class="editor-window-dots" aria-hidden="true">
+          <i></i><i></i><i></i>
+        </span>
+        <span class="editor-filename">portfolio.component.ts</span>
+        <span class="editor-language">TS</span>
+      </div>
+
+      <div class="editor-code" aria-hidden="true">
+        <div><span class="code-line-number">01</span><span class="code-purple">const</span>&nbsp;&nbsp;<span class="code-blue">passion</span> = &#123;</div>
+        <div><span class="code-line-number">02</span>&nbsp;&nbsp;<span class="code-orange">curiosité</span>: <span class="code-green">'infinie'</span>,</div>
+        <div><span class="code-line-number">03</span>&nbsp;&nbsp;<span class="code-orange">créativité</span>: <span class="code-green">'active'</span>,</div>
+        <div><span class="code-line-number">04</span>&nbsp;&nbsp;<span class="code-orange">motivation</span>: <span class="code-green">'toujours'</span></div>
+        <div><span class="code-line-number">05</span>&#125;;</div>
+        <div class="code-spacer"><span class="code-line-number">06</span></div>
+        <div><span class="code-line-number">07</span><span class="code-purple">function</span>&nbsp;&nbsp;<span class="code-blue">construire</span>() &#123;</div>
+        <div><span class="code-line-number">08</span>&nbsp;&nbsp;<span class="code-purple">return</span> <span class="code-green">'une idée à la fois'</span>;</div>
+        <div><span class="code-line-number">09</span>&#125;<span class="editor-caret"></span></div>
+      </div>
+
+      <div class="editor-status">
+        <span><i></i> EN APPRENTISSAGE</span>
+        <span>CÔTE D’IVOIRE</span>
+      </div>
+    </div>
+  </div>
+</main>
+
+<section class="content-section about-section reveal-on-scroll" id="apropos">
+  <div class="section-heading">
+    <span class="section-number">01 / À PROPOS</span>
+    <h2>Curieux de nature,<br /><span>développeur par passion.</span></h2>
+  </div>
+
+  <div class="about-copy">
+    <p>
+      Je suis Ogokonlé Jean Samuel Prince Kouassi, développeur passionné par la
+      création d’applications web modernes et performantes.
+    </p>
+    <p>
+      Curieux et rigoureux, j’aime relever de nouveaux défis, explorer les
+      technologies et transformer des idées en expériences numériques utiles.
+    </p>
+  </div>
+</section>
+
+<section class="content-section journey-section reveal-on-scroll" id="parcours">
+  <div class="section-heading">
+    <span class="section-number">02 / MON PARCOURS</span>
+    <h2>Chaque étape<br /><span>me fait avancer.</span></h2>
+  </div>
+
+  <div class="journey-layout">
+    <figure class="journey-photo-card">
+      <img
+        class="journey-photo"
+        src="/img/maphoto2.jpg"
+        alt="Portrait de Jean Samuel"
+        loading="lazy"
+      />
+      <span class="photo-placeholder-frame" aria-hidden="true"></span>
+    </figure>
+
+    <div class="timeline-list">
+      <div class="timeline-track" aria-hidden="true">
+        <span [style.height.%]="journeyProgress"></span>
+      </div>
+
+      <ol class="timeline" aria-label="Étapes de mon parcours">
+        @for (step of journeySteps; track step.title; let index = $index) {
+          <li
+            class="timeline-item"
+            [class.is-active]="activeJourneyIndex() === index"
+          >
+            <button
+              class="timeline-marker"
+              [class.is-reached]="index <= activeJourneyIndex()"
+              type="button"
+              [attr.aria-label]="'Afficher l’étape : ' + step.title"
+              [attr.aria-pressed]="activeJourneyIndex() === index"
+              (click)="selectJourneyStep(index)"
+            ></button>
+            <div class="timeline-entry">
+              <span class="timeline-period">{{ step.period }}</span>
+              <h3>{{ step.title }}</h3>
+              <p>{{ step.description }}</p>
+              @if (step.place) {
+                <span class="timeline-place">{{ step.place }}</span>
+              }
+            </div>
+          </li>
+        }
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="content-section skills-section reveal-on-scroll" id="competences">
+  <div class="section-heading">
+    <span class="section-number">03 / SAVOIR-FAIRE</span>
+    <h2>Mes <span>compétences.</span></h2>
+  </div>
+
+  <div class="skills-grid">
+    <article class="skill-card">
+      <span class="skill-index">01</span>
+      <h3>Back-end</h3>
+      <ul class="technology-list" aria-label="Technologies back-end">
+        <li><span class="technology-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.17.0/icons/php/php-original.svg" alt="" loading="lazy" /></span>PHP</li>
+        <li><span class="technology-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.17.0/icons/laravel/laravel-original.svg" alt="" loading="lazy" /></span>Laravel</li>
+        <li><span class="technology-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.17.0/icons/java/java-original.svg" alt="" loading="lazy" /></span>Java</li>
+        <li><span class="technology-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.17.0/icons/kotlin/kotlin-original.svg" alt="" loading="lazy" /></span>Kotlin</li>
+        <li><span class="technology-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.17.0/icons/mysql/mysql-original.svg" alt="" loading="lazy" /></span>MySQL</li>
+      </ul>
+    </article>
+
+    <article class="skill-card">
+      <span class="skill-index">02</span>
+      <h3>Front-end</h3>
+      <ul class="technology-list" aria-label="Technologies front-end">
+        <li><span class="technology-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.17.0/icons/html5/html5-original.svg" alt="" loading="lazy" /></span>HTML5</li>
+        <li><span class="technology-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.17.0/icons/css3/css3-original.svg" alt="" loading="lazy" /></span>CSS3</li>
+        <li><span class="technology-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.17.0/icons/javascript/javascript-original.svg" alt="" loading="lazy" /></span>JavaScript</li>
+        <li><span class="technology-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.17.0/icons/typescript/typescript-original.svg" alt="" loading="lazy" /></span>TypeScript</li>
+        <li><span class="technology-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.17.0/icons/angular/angular-original.svg" alt="" loading="lazy" /></span>Angular</li>
+        <li><span class="technology-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.17.0/icons/bootstrap/bootstrap-original.svg" alt="" loading="lazy" /></span>Bootstrap</li>
+      </ul>
+    </article>
+
+    <article class="skill-card">
+      <span class="skill-index">03</span>
+      <h3>Outils</h3>
+      <ul class="technology-list" aria-label="Outils">
+        <li><span class="technology-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.17.0/icons/git/git-original.svg" alt="" loading="lazy" /></span>Git</li>
+        <li><span class="technology-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.17.0/icons/github/github-original.svg" alt="" loading="lazy" /></span>GitHub</li>
+        <li><span class="technology-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.17.0/icons/docker/docker-original.svg" alt="" loading="lazy" /></span>Docker</li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+<section class="content-section projects-section reveal-on-scroll" id="projets">
+  <div class="section-heading">
+    <span class="section-number">04 / RÉALISATIONS</span>
+    <h2>Des idées qui<br /><span>prennent forme.</span></h2>
+  </div>
+
+  <div class="projects-grid">
+    <article class="project-card">
+      <div class="project-gallery project-gallery--three" aria-label="Captures du projet Ebarre-ci Agro">
+        <figure class="project-shot project-shot-featured">
+          <img src="/img/ebarreci-agro-hero.png" alt="Page d’accueil de la plateforme Ebarre-ci Agro" loading="lazy" />
+          <figcaption><span>01</span> Accueil</figcaption>
+        </figure>
+        <figure class="project-shot">
+          <img src="/img/ebarreci-agro-catalogue.png" alt="Catalogue des cultures de la plateforme Ebarre-ci Agro" loading="lazy" />
+          <figcaption><span>02</span> Catalogue</figcaption>
+        </figure>
+        <figure class="project-shot">
+          <img src="/img/Capture%20d%27%C3%A9cran%202026-10-18%20214332.png" alt="Tableau de suivi des projets agricoles Ebarre-ci" loading="lazy" />
+          <figcaption><span>03</span> Suivi des projets</figcaption>
+        </figure>
+      </div>
+      <div class="project-details">
+        <div class="project-title-row">
+          <h3>Ebarre-ci Agro</h3>
+        </div>
+        <p>Plateforme agricole de commande et de suivi d’un projet agricole.</p>
+      </div>
+    </article>
+
+    <article class="project-card">
+      <div class="project-gallery project-gallery--two" aria-label="Captures du site d’invitation de mariage">
+        <figure class="project-shot">
+          <img src="/img/weeding-hero.png" alt="Page d’accueil du site d’invitation de mariage" loading="lazy" />
+          <figcaption><span>01</span> Accueil</figcaption>
+        </figure>
+        <figure class="project-shot">
+          <img src="/img/weeding-invitation.png" alt="Détails du lieu et du programme de la célébration" loading="lazy" />
+          <figcaption><span>02</span> Invitation</figcaption>
+        </figure>
+      </div>
+      <div class="project-details">
+        <div class="project-title-row">
+          <h3>Site d’invitation de mariage</h3>
+        </div>
+        <p>Un site conçu pour partager une invitation de mariage.</p>
+      </div>
+    </article>
+
+    <article class="project-card">
+      <div class="project-gallery project-gallery--two" aria-label="Captures de la plateforme AfrikTextile">
+        <figure class="project-shot">
+          <img src="/img/Afrik%20Textile%20%E2%80%94%20Catalogue%20africain%20%C3%A9l%C3%A9gant.png" alt="Page d’accueil et catalogue de la plateforme AfrikTextile" loading="lazy" />
+          <figcaption><span>01</span> Catalogue</figcaption>
+        </figure>
+        <figure class="project-shot">
+          <img src="/img/Tableau%20de%20bord%20Afrik%20Textile.png" alt="Tableau de bord de gestion AfrikTextile" loading="lazy" />
+          <figcaption><span>02</span> Administration</figcaption>
+        </figure>
+      </div>
+      <div class="project-details">
+        <div class="project-title-row">
+          <h3>AfrikTextile</h3>
+        </div>
+        <p>Plateforme de vente de tissus africains.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="content-section contact-section reveal-on-scroll" id="contact">
+  <div class="section-heading">
+    <span class="section-number">05 / CONTACT</span>
+    <h2>Un projet en tête ?<br /><span>Parlons-en.</span></h2>
+  </div>
+
+  <div class="contact-layout">
+    <form
+      class="contact-form"
+      #contactNgForm="ngForm"
+      (ngSubmit)="sendContactMessage(contactNgForm)"
+    >
+      <p class="contact-intro">
+        Une question, une idée ou une opportunité ? Écris-moi.
+      </p>
+
+      <div class="contact-form-grid">
+        <div class="form-field">
+          <label for="userName">Nom &amp; prénoms</label>
+          <input
+            id="userName"
+            name="userName"
+            type="text"
+            placeholder="Ex.Kiyotaka Ayanokoji"
+            [(ngModel)]="contactFormData.userName"
+            pattern="[A-Za-zÀ-ÖØ-öø-ÿĀ-ž\s'-]+"
+            maxlength="80"
+            required
+          />
+          @if (contactNgForm.submitted && contactNgForm.controls['userName']?.invalid) {
+            <span class="field-error">Saisis un nom valide.</span>
+          }
+        </div>
+
+        <div class="form-field">
+          <label for="userEmail">Adresse e-mail</label>
+          <input
+            id="userEmail"
+            name="userEmail"
+            type="email"
+            placeholder="Ex. banlieue713@gmail.com"
+            [(ngModel)]="contactFormData.userEmail"
+            maxlength="254"
+            required
+          />
+          @if (contactNgForm.submitted && contactNgForm.controls['userEmail']?.invalid) {
+            <span class="field-error">Saisis une adresse e-mail valide.</span>
+          }
+        </div>
+
+        <div class="form-field form-field-full">
+          <label for="userSubject">Objet</label>
+          <input
+            id="userSubject"
+            name="userSubject"
+            type="text"
+            placeholder="Sujet de votre message"
+            [(ngModel)]="contactFormData.userSubject"
+            maxlength="120"
+            required
+          />
+          @if (contactNgForm.submitted && contactNgForm.controls['userSubject']?.invalid) {
+            <span class="field-error">Indique l’objet de ton message.</span>
+          }
+        </div>
+
+        <div class="form-field form-field-full">
+          <label for="userMessage">Message</label>
+          <textarea
+            id="userMessage"
+            name="userMessage"
+            rows="5"
+            placeholder="Votre message..."
+            [(ngModel)]="contactFormData.userMessage"
+            maxlength="5000"
+            required
+          ></textarea>
+          @if (contactNgForm.submitted && contactNgForm.controls['userMessage']?.invalid) {
+            <span class="field-error">Écris ton message avant de l’envoyer.</span>
+          }
+        </div>
+      </div>
+
+      @if (contactFeedback(); as feedback) {
+        <p class="form-feedback form-feedback-error" role="alert">
+          {{ feedback.message }}
+        </p>
+      }
+
+      <button class="button-primary contact-submit" type="submit" [disabled]="isSubmittingContact()">
+        {{ isSubmittingContact() ? 'Envoi en cours…' : 'Envoyer le message' }}
+        @if (!isSubmittingContact()) {
+          <svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="m3 4 18 8-18 8 3-8-3-8Zm3 8h15" />
+          </svg>
+        }
+      </button>
+    </form>
+  </div>
+</section>
+
+<footer class="site-footer reveal-on-scroll">
+  <a class="brand footer-brand" href="#accueil" aria-label="Retour à l’accueil — Dev713">
+    <img class="brand-logo" src="/img/monlogo.png" alt="" />
+  </a>
+  <p>© {{ currentYear }} Dev713. Tous droits réservés.</p>
+  <div class="social-links" aria-label="Réseaux sociaux">
+    <a
+      class="social-link"
+      href="https://github.com/SamuelDev06"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="GitHub de Jean Samuel (ouvre un nouvel onglet)"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.56.1.76-.24.76-.54v-2.1c-3.1.67-3.75-1.32-3.75-1.32-.5-1.29-1.24-1.63-1.24-1.63-1.01-.69.08-.68.08-.68 1.12.08 1.71 1.15 1.71 1.15 1 1.7 2.62 1.21 3.26.93.1-.72.39-1.21.71-1.49-2.48-.28-5.09-1.24-5.09-5.52 0-1.22.44-2.22 1.15-3-.12-.28-.5-1.42.11-2.95 0 0 .94-.3 3.05 1.15a10.6 10.6 0 0 1 5.55 0c2.11-1.45 3.05-1.15 3.05-1.15.61 1.53.23 2.67.11 2.95.72.78 1.15 1.78 1.15 3 0 4.29-2.62 5.23-5.11 5.5.4.35.76 1.03.76 2.08v3.08c0 .3.2.65.77.54A11.1 11.1 0 0 0 12 .9Z" />
+      </svg>
+    </a>
+    <a
+      class="social-link"
+      href="https://www.linkedin.com/in/jean-samuel-ogokonl%C3%A9-83a5322bb?utm_source=share_via&amp;utm_content=profile&amp;utm_medium=member_ios"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="LinkedIn de Jean Samuel (ouvre un nouvel onglet)"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M20.45 2H3.55C2.69 2 2 2.68 2 3.52v16.96c0 .84.69 1.52 1.55 1.52h16.9c.86 0 1.55-.68 1.55-1.52V3.52c0-.84-.69-1.52-1.55-1.52ZM7.93 18.45H4.96V9.02h2.97v9.43ZM6.45 7.73a1.72 1.72 0 1 1 0-3.44 1.72 1.72 0 0 1 0 3.44Zm12 10.72h-2.96v-4.59c0-1.1-.02-2.51-1.53-2.51-1.53 0-1.77 1.2-1.77 2.43v4.67H9.23V9.02h2.84v1.29h.04c.39-.74 1.36-1.53 2.8-1.53 3 0 3.54 1.97 3.54 4.53v5.14Z" />
+      </svg>
+    </a>
+    <a
+      class="social-link"
+      href="https://wa.me/qr/JPLKTXBF3EYFD1?s=r"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="WhatsApp de Jean Samuel (ouvre un nouvel onglet)"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12.04 2a9.82 9.82 0 0 0-8.42 14.88L2.2 22l5.25-1.38A9.9 9.9 0 1 0 12.04 2Zm0 17.98c-1.45 0-2.87-.39-4.11-1.13l-.3-.18-3.12.82.83-3.04-.2-.31A8.07 8.07 0 1 1 12.04 20Zm4.43-6.04c-.24-.12-1.43-.71-1.65-.79-.22-.08-.38-.12-.54.12-.16.24-.62.79-.76.95-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.21-1.43-1.35-1.67-.14-.24-.02-.37.1-.49.1-.1.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.31-.74-1.8-.2-.47-.4-.4-.54-.4h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2 0 1.17.86 2.3.98 2.46.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.51.58.18 1.1.15 1.51.09.46-.07 1.43-.58 1.63-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28Z" />
+      </svg>
+    </a>
+    <a
+      class="social-link"
+      href="https://www.instagram.com/samy_on_line_713?psln=MW1mM2tkNWZ6ZHl4cw%3D%3D&amp;utm_source=qr"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Instagram de Jean Samuel (ouvre un nouvel onglet)"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9Zm4.5 3a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm5.25-3.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5Z" />
+      </svg>
+    </a>
+  </div>
+</footer>
