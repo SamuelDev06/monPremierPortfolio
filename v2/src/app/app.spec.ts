@@ -236,4 +236,33 @@ describe('App', () => {
       'Account > Security > Allowed Origins',
     );
   });
+
+  it('should explain which EmailJS settings to check after a 404', async () => {
+    vi.spyOn(globalThis, 'fetch').mockResolvedValue(
+      new Response('Service or template not found', { status: 404 }),
+    );
+    const fixture = TestBed.createComponent(App);
+    fixture.detectChanges();
+
+    const element = fixture.nativeElement as HTMLElement;
+    const name = element.querySelector<HTMLInputElement>('#userName')!;
+    const email = element.querySelector<HTMLInputElement>('#userEmail')!;
+    const subject = element.querySelector<HTMLInputElement>('#userSubject')!;
+    const message = element.querySelector<HTMLTextAreaElement>('#userMessage')!;
+    name.value = 'Jean Samuel';
+    email.value = 'jean@example.com';
+    subject.value = 'Portfolio';
+    message.value = 'Bonjour';
+    [name, email, subject, message].forEach((input) =>
+      input.dispatchEvent(new Event('input', { bubbles: true })),
+    );
+
+    element.querySelector<HTMLButtonElement>('.contact-submit')!.click();
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    expect(element.querySelector('.form-feedback')?.textContent).toContain(
+      'clé publique, le Service ID ou le Template ID',
+    );
+  });
 });

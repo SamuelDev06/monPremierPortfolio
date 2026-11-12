@@ -209,7 +209,9 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
         const errorDetails = await response.text();
         console.error('EmailJS a refusé la requête :', response.status, errorDetails);
         const errorMessage =
-          response.status === 412
+          response.status === 404
+            ? 'EmailJS ne reconnaît pas la clé publique, le Service ID ou le Template ID. Recopie les trois depuis le même compte EmailJS, puis redéploie le site.'
+            : response.status === 412
             ? 'EmailJS refuse l’adresse de ce site. Dans EmailJS, ouvre Account > Security > Allowed Origins et ajoute l’origine exacte (par exemple http://localhost:4200 ou l’adresse de ton site en ligne).'
             : response.status === 400
             ? 'EmailJS a refusé la demande. Vérifie le service, le modèle et les noms des variables configurés.'
